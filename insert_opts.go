@@ -23,6 +23,21 @@ var tagRE = regexp.MustCompile(`\A[\w][\w\-]+[\w]\z`)
 // insertion time. These will override any default InsertOpts settings provided
 // by JobArgsWithInsertOpts, as well as any global defaults.
 type InsertOpts struct {
+	// FanOut optionally describes a set of child jobs to insert atomically
+	// when this job is completed using JobCompleteTx. The spec is stored on
+	// the job under the reserved metadata key `river:fanout` so that it's
+	// durable along with the job itself. Child jobs inherit this job's
+	// priority unless they specify their own, along with any metadata keys
+	// named in FanOutOpts.MetadataKeys.
+	//
+	// Fan-out only triggers for jobs completed with JobCompleteTx, where
+	// child insertion shares the caller's transaction. Jobs completed through
+	// the normal executor path do not fan out.
+	//
+	// If nil (the default), no fan-out occurs and the insert path behaves
+	// exactly as before.
+	FanOut *FanOutOpts
+
 	// MaxAttempts is the maximum number of total attempts (including both the
 	// original run and all retries) before a job is abandoned and set as
 	// discarded.

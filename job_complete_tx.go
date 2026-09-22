@@ -30,6 +30,11 @@ import (
 // kind EventKindJobCompleted. The error has no effect.
 //
 // Returns the updated, completed job.
+//
+// If the job was inserted with InsertOpts.FanOut, its child jobs are inserted
+// as part of the same transaction, inheriting the job's priority and any
+// whitelisted metadata keys. If child insertion fails, an error is returned
+// and the caller should roll back tx, leaving the job uncompleted.
 func JobCompleteTx[TDriver riverdriver.Driver[TTx], TTx any, TArgs JobArgs](ctx context.Context, tx TTx, job *Job[TArgs]) (*Job[TArgs], error) {
 	if job.State != rivertype.JobStateRunning {
 		return nil, errors.New("job must be running")
@@ -81,6 +86,14 @@ func JobCompleteTx[TDriver riverdriver.Driver[TTx], TTx any, TArgs JobArgs](ctx 
 		return nil, rivertype.ErrNotFound
 	}
 	updatedJob := &Job[TArgs]{JobRow: rows[0]}
+
+	// Insert any fan-out children in the same transaction so that the
+	// completion and its children commit or roll back atomically. An error
+	// here leaves the parent uncompleted so the failure is visible to the
+	// caller instead of silently dropping children.
+	if err := client.insertFanOutChildren(ctx, tx, updatedJob.JobRow); err != nil {
+		return nil, err
+	}
 
 	if err := json.Unmarshal(updatedJob.EncodedArgs, &updatedJob.Args); err != nil {
 		return nil, err

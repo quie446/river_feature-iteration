@@ -13,6 +13,11 @@ import (
 // MetadataKeyOutput is the metadata key used to store recorded job output.
 const MetadataKeyOutput = "output"
 
+// MetadataKeyFanOut is the reserved metadata key under which a job's fan-out
+// spec is stored so that child jobs can be inserted atomically when the job
+// is completed with JobCompleteTx.
+const MetadataKeyFanOut = "river:fanout"
+
 // ErrNotFound is returned when a query by ID does not match any existing
 // rows. For example, attempting to cancel a job that doesn't exist will
 // return this error.

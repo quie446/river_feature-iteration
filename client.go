@@ -1761,6 +1761,17 @@ func insertParamsFromConfigArgsAndOptions(archetype *baseservice.Archetype, conf
 		metadata = []byte("{}")
 	}
 
+	fanOut := insertOpts.FanOut
+	if fanOut == nil {
+		fanOut = jobInsertOpts.FanOut
+	}
+	if fanOut != nil {
+		metadata, err = fanOut.encodeIntoMetadata(metadata)
+		if err != nil {
+			return nil, err
+		}
+	}
+
 	insertParams := &rivertype.JobInsertParams{
 		Args:        args,
 		CreatedAt:   createdAt,

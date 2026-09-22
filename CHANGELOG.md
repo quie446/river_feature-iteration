@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `InsertOpts.FanOut` for cascading fan-out: a job inserted with fan-out options carries a durable spec under the reserved `river:fanout` metadata key, and completing it with `JobCompleteTx` atomically inserts its child jobs in the same transaction. Children inherit the parent's priority unless overridden, along with a whitelist of metadata keys named in `FanOutOpts.MetadataKeys`. If child insertion fails, `JobCompleteTx` returns an error so the caller can roll back, leaving the parent uncompleted rather than dropping children.
+
 ### Fixed
 
 - Fixed SQLite job list pagination skipping or repeating jobs by formatting cursor timestamps consistently with stored timestamps. [PR #1374](https://github.com/riverqueue/river/pull/1374).
