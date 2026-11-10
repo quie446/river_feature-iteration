@@ -7,45 +7,45 @@ toolchain go1.26.6
 require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/jackc/pgerrcode v0.0.0-20240316143900-6e2875d9b438
-	github.com/jackc/pgx/v5 v5.11.0
+	github.com/jackc/pgx/v5 v5.12.0
 	github.com/lib/pq v1.12.3
-	github.com/riverqueue/river v0.47.0
-	github.com/riverqueue/river/riverdriver v0.47.0
-	github.com/riverqueue/river/riverdriver/riverdatabasesql v0.47.0
-	github.com/riverqueue/river/riverdriver/riverpgxv5 v0.47.0
-	github.com/riverqueue/river/riverdriver/riversqlite v0.47.0
-	github.com/riverqueue/river/rivershared v0.47.0
-	github.com/riverqueue/river/rivertype v0.47.0
+	github.com/riverqueue/river v0.51.1
+	github.com/riverqueue/river/riverdriver v0.51.1
+	github.com/riverqueue/river/riverdriver/riverdatabasesql v0.51.1
+	github.com/riverqueue/river/riverdriver/riverpgxv5 v0.51.1
+	github.com/riverqueue/river/riverdriver/riversqlite v0.51.1
+	github.com/riverqueue/river/rivershared v0.51.1
+	github.com/riverqueue/river/rivertype v0.51.1
 	github.com/stretchr/testify v1.12.1
-	github.com/tidwall/gjson v1.19.0
-	github.com/tidwall/sjson v1.2.5
+	github.com/tidwall/gjson v1.20.1
+	github.com/tidwall/sjson v1.2.7
 	github.com/tursodatabase/libsql-client-go v0.0.0-20260528064733-9d5d30a29a60
-	golang.org/x/text v0.42.0
-	modernc.org/sqlite v1.59.0
-	turso.tech/database/tursogo v0.7.2
+	golang.org/x/text v0.43.0
+	modernc.org/sqlite v1.62.0
+	turso.tech/database/tursogo v0.8.3
 )
 
 require (
 	github.com/antlr4-go/antlr/v4 v4.13.0 // indirect
 	github.com/coder/websocket v1.8.12 // indirect
-	github.com/dustin/go-humanize v1.0.1 // indirect
+	github.com/dustin/go-humanize v1.1.0 // indirect
 	github.com/ebitengine/purego v0.9.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
-	github.com/jackc/puddle/v2 v2.2.2 // indirect
+	github.com/jackc/puddle/v2 v2.2.3 // indirect
 	github.com/mattn/go-isatty v0.0.24 // indirect
-	github.com/ncruces/go-strftime v1.0.0 // indirect
+	github.com/ncruces/go-strftime v1.1.0 // indirect
 	github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec // indirect
 	github.com/tidwall/match v1.2.0 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
-	github.com/tursodatabase/turso-go-platform-libs v0.7.2 // indirect
+	github.com/tursodatabase/turso-go-platform-libs v0.8.3 // indirect
 	go.uber.org/goleak v1.3.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546 // indirect
-	golang.org/x/sync v0.23.0 // indirect
-	golang.org/x/sys v0.47.0 // indirect
-	modernc.org/libc v1.75.7 // indirect
+	golang.org/x/sync v0.25.0 // indirect
+	golang.org/x/sys v0.49.0 // indirect
+	modernc.org/libc v1.80.1 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.12.1 // indirect
 )
